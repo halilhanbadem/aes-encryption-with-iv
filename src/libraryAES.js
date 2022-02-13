@@ -1,3 +1,10 @@
+/**
+ * Developer: Halil Han BADEM
+ * Created date: 13 02 2022 22 46
+ * Modify Developer: ------
+ * Modify date: 
+ */
+
 const { randomFill, scrypt, createCipheriv, createDecipheriv } = require("crypto");
 const libraryUtils = require("./libraryUtils");
 var UtilsProvider = new libraryUtils();

@@ -1,3 +1,10 @@
+/**
+ * Developer: Halil Han BADEM
+ * Created date: 13 02 2022 22 46
+ * Modify Developer: ------
+ * Modify date: 
+ */
+
 class libraryUtils {
    constructor () {
 
