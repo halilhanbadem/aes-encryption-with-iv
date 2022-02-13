@@ -1,4 +1,4 @@
-const libraryAES = require("./src/libraryAES");
+const libraryAES = require("../src/libraryAES");
 
 
 const ExampleData = "Halil Han BADEM";
