@@ -33,6 +33,11 @@ class libraryAES {
                 var cipher = createCipheriv(localConfig.type, key, ivkey);
                 var encrypted = cipher.update(data, 'utf8', 'hex');
                 encrypted += cipher.final('hex');
+
+                if (localConfig.output == "base64") {
+                    encrypted = Buffer.from(encrypted, 'utf8').toString('base64');
+                };
+
                 resolve(encrypted + "." + Buffer.from(ivkey, 'hex').toString('base64'));
             });
         });
@@ -69,6 +74,11 @@ class libraryAES {
             var justData = data.split('.')[0];
             autoIVKey = Buffer.from(autoIVKey, 'base64');
             var decipher = createDecipheriv(localConfig.type, key, autoIVKey);
+
+            if (localConfig.output == "base64") {
+               justData = Buffer.from(justData, 'base64').toString('utf8');   
+            };
+
             var decrypted = decipher.update(justData, 'hex', 'utf8');
             decrypted += decipher.final('utf8');
             resolve(decrypted);
