@@ -14,6 +14,12 @@ var libAES = new libraryAES(config);
 
 
 (async() => {
+  var x = await libAES.EncryptionDifferenceAlgo(ExampleData, ExampleKey, ExampleIVKey);
+  console.log(x);
+  var y = await libAES.DecryptionDifferenceAlgo(x, ExampleKey);
+  console.log(y);   
+
+  return;  
   var a = await libAES.Encryption(ExampleData, ExampleKey);
   console.log(a);
   var b = await libAES.Decryption(a, ExampleKey);
