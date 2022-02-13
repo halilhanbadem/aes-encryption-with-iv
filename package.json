@@ -1,0 +1,25 @@
+{
+  "name": "aes-encryption-with-iv",
+  "version": "1.0.0",
+  "description": "This package allows you to use different algorithms for IV key in AES encryptions.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/halilhanbadem/aes-encryption-with-iv.git"
+  },
+  "keywords": [
+    "aes",
+    "encryption",
+    "iv",
+    "strength"
+  ],
+  "author": "Halil Han BADEM <halilhanbadem@gmail.com> (https://halilhanbadem.dev)",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/halilhanbadem/aes-encryption-with-iv/issues"
+  },
+  "homepage": "https://github.com/halilhanbadem/aes-encryption-with-iv#readme"
+}
