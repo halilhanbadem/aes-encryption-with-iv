@@ -32,8 +32,8 @@ class libraryAES {
 
                 var cipher = createCipheriv(localConfig.type, key, ivkey);
                 var encrypted = cipher.update(data, 'utf8', 'hex');
-                encrypted += cipher.final('utf8');
-                resolve(encrypted);
+                encrypted += cipher.final('hex');
+                resolve(encrypted + "." + Buffer.from(ivkey, 'hex').toString('base64'));
             });
         });
     });
@@ -50,7 +50,7 @@ class libraryAES {
 
             var cipher = createCipheriv(localConfig.type, key, Buffer.from(ivkey, 'utf8'));
             var encrypted = cipher.update(data, 'utf8', 'hex');
-            encrypted += cipher.final('utf8');
+            encrypted += cipher.final('hex');
             resolve(encrypted);
         });
     });
@@ -66,9 +66,10 @@ class libraryAES {
             };
 
             var autoIVKey = data.split('.')[1];
-            autoIVKey = Buffer.from(autoIVKey, 'base64').toString('utf8');
-            var decipher = createDecipheriv(localConfig.type, key, Buffer.from(autoIVKey, 'hex'));
-            var decrypted = decipher.update(data, 'hex', 'utf8');
+            var justData = data.split('.')[0];
+            autoIVKey = Buffer.from(autoIVKey, 'base64');
+            var decipher = createDecipheriv(localConfig.type, key, autoIVKey);
+            var decrypted = decipher.update(justData, 'hex', 'utf8');
             decrypted += decipher.final('utf8');
             resolve(decrypted);
         })
