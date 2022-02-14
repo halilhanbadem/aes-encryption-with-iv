@@ -10,7 +10,7 @@ const libraryUtils = require("./libraryUtils");
 var UtilsProvider = new libraryUtils();
 
 class libraryAES {
-    EConfig;
+    #EConfig;
     constructor(config) {
         if (!config) {
             throw 'the config definition is missing.';
@@ -20,12 +20,18 @@ class libraryAES {
             throw 'please specify the encryption type in the config.';
         };
 
-        this.EConfig = config;
+        this.#EConfig = config;
     };
 
+    /**
+     * 
+     * @param {string} data 
+     * @param {string} key 
+     * @returns {Promise<string>}
+     */
     Encryption(data, key) {
         var localConfig;
-        localConfig = this.EConfig;
+        localConfig = this.#EConfig;
         return new Promise(function (resolve, reject) {
             scrypt(key, 'salt', UtilsProvider.getKeyLength(localConfig.type), (error, key) => {
                 if (error) {
@@ -47,9 +53,16 @@ class libraryAES {
         });
     };
 
+    /**
+     * 
+     * @param {string} data 
+     * @param {string} key 
+     * @param {string} ivkey 
+     * @returns {Promise<string>}
+     */
     EncryptionWithIV(data, key, ivkey) {
         var localConfig;
-        localConfig = this.EConfig;
+        localConfig = this.#EConfig;
         return new Promise(function (resolve, reject) {
             scrypt(key, 'salt', UtilsProvider.getKeyLength(localConfig.type), (error, key) => {
                 if (error) {
@@ -65,9 +78,15 @@ class libraryAES {
         });
     };
 
+    /**
+     * 
+     * @param {string} data 
+     * @param {string} key 
+     * @returns {Promise<string>}
+     */
     Decryption(data, key) {
         var localConfig;
-        localConfig = this.EConfig;
+        localConfig = this.#EConfig;
         return new Promise(function (resolve, reject) {
             scrypt(key, 'salt', UtilsProvider.getKeyLength(localConfig.type), (error, key) => {
                 if (error) {
@@ -86,9 +105,16 @@ class libraryAES {
         });
     };
 
+    /**
+     * 
+     * @param {string} data 
+     * @param {string} key 
+     * @param {string} ivkey 
+     * @returns {Promise<string>}
+     */
     DecryptionWithIV(data, key, ivkey) {
         var localConfig;
-        localConfig = this.EConfig;
+        localConfig = this.#EConfig;
         return new Promise(function (resolve, reject) {
             scrypt(key, 'salt', UtilsProvider.getKeyLength(localConfig.type), (error, key) => {
                 if (error) {
@@ -104,9 +130,15 @@ class libraryAES {
         });
     };
 
+    /**
+     * 
+     * @param {string} data 
+     * @param {string} key 
+     * @returns {Promise<string>}
+     */
     EncryptionDifferenceAlgo(data, key) {
         var localConfig;
-        localConfig = this.EConfig;
+        localConfig = this.#EConfig;
         return new Promise(function (resolve, reject) {
             scrypt(key, 'salt', UtilsProvider.getKeyLength(localConfig.type), (error, key) => {
                 if (error) {
@@ -134,9 +166,15 @@ class libraryAES {
         });
     };
 
+    /**
+     * 
+     * @param {string} data 
+     * @param {string} key 
+     * @returns {Promise<string>}
+     */
     DecryptionDifferenceAlgo(data, key) {
         var localConfig;
-        localConfig = this.EConfig;
+        localConfig = this.#EConfig;
         return new Promise(function(resolve, reject) {
             scrypt(key, 'salt', UtilsProvider.getKeyLength(localConfig.type), (error, key)  => {
                 if (error) {
