@@ -192,7 +192,7 @@ class libraryAES {
                     return;
                 };
 
-                DifferenceAlgoOutput = localConfig.output == "base64" ? Buffer.from(DifferenceAlgoOutput, 'base64').toString('utf8') : DifferenceAlgoOutput;
+                data = localConfig.output == "base64" ? Buffer.from(data, 'base64').toString('hex') : data;
                 var onlydata, ivkey;
                 onlydata = data.substring(16, data.length - 16);
                 ivkey = data.substring(0, 16) + data.substring(data.length - 16, data.length);
