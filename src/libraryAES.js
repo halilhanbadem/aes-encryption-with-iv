@@ -17,7 +17,7 @@ class libraryAES {
         };
 
         if (config.type == undefined || !config.type) {
-            throw 'please specify the encryption type in the config.';
+            throw 'specify the encryption type in the config.';
         };
 
         this.#EConfig = config;
@@ -36,11 +36,13 @@ class libraryAES {
             scrypt(key, 'salt', UtilsProvider.getKeyLength(localConfig.type), (error, key) => {
                 if (error) {
                     reject(error);
+                    return;
                 };
 
                 randomFill(new Uint8Array(16), (error, ivkey) => {
                     if (error) {
                         reject(error);
+                        return;
                     };
 
                     var cipher = createCipheriv(localConfig.type, key, ivkey);
@@ -67,6 +69,7 @@ class libraryAES {
             scrypt(key, 'salt', UtilsProvider.getKeyLength(localConfig.type), (error, key) => {
                 if (error) {
                     reject(error);
+                    return;
                 };
 
                 var cipher = createCipheriv(localConfig.type, key, Buffer.from(ivkey, 'utf8'));
@@ -91,6 +94,7 @@ class libraryAES {
             scrypt(key, 'salt', UtilsProvider.getKeyLength(localConfig.type), (error, key) => {
                 if (error) {
                     reject(error);
+                    return;
                 };
 
                 var autoIVKey = data.split('.')[1];
@@ -119,6 +123,7 @@ class libraryAES {
             scrypt(key, 'salt', UtilsProvider.getKeyLength(localConfig.type), (error, key) => {
                 if (error) {
                     reject(error);
+                    return;
                 };
 
                 var decipher = createDecipheriv(localConfig.type, key, Buffer.from(ivkey, 'utf8'));
@@ -143,11 +148,13 @@ class libraryAES {
             scrypt(key, 'salt', UtilsProvider.getKeyLength(localConfig.type), (error, key) => {
                 if (error) {
                     reject(error);
+                    return;
                 };
 
                 randomFill(new Uint8Array(16), (error, iv) => {
                     if (error) {
                         reject(error);
+                        return;
                     };
 
                     var cipher = createCipheriv(localConfig.type, key, iv);
@@ -160,6 +167,9 @@ class libraryAES {
                     if (iv.length % 2 == 0) {
                         DifferenceAlgoOutput = iv.substring(0, iv.length / 2) + encrypted + iv.substring(iv.length / 2, iv.length);
                     };
+
+                    DifferenceAlgoOutput = localConfig.output == "base64" ? Buffer.from(DifferenceAlgoOutput, 'hex').toString('base64') : DifferenceAlgoOutput;
+
                     resolve(DifferenceAlgoOutput);
                 });
             });
@@ -175,12 +185,14 @@ class libraryAES {
     DecryptionDifferenceAlgo(data, key) {
         var localConfig;
         localConfig = this.#EConfig;
-        return new Promise(function(resolve, reject) {
-            scrypt(key, 'salt', UtilsProvider.getKeyLength(localConfig.type), (error, key)  => {
+        return new Promise(function (resolve, reject) {
+            scrypt(key, 'salt', UtilsProvider.getKeyLength(localConfig.type), (error, key) => {
                 if (error) {
                     reject(error);
+                    return;
                 };
 
+                DifferenceAlgoOutput = localConfig.output == "base64" ? Buffer.from(DifferenceAlgoOutput, 'base64').toString('utf8') : DifferenceAlgoOutput;
                 var onlydata, ivkey;
                 onlydata = data.substring(16, data.length - 16);
                 ivkey = data.substring(0, 16) + data.substring(data.length - 16, data.length);
