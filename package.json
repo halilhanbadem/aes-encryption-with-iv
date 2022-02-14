@@ -1,6 +1,6 @@
 {
   "name": "aes-encryption-with-iv",
-  "version": "1.0.0",
+  "version": "1.0.2-beta",
   "description": "This package allows you to use different algorithms for IV key in AES encryptions.",
   "main": "index.js",
   "scripts": {
