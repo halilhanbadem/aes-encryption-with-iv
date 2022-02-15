@@ -5,7 +5,7 @@
 ![](https://img.shields.io/npm/dt/aes-encryption-with-iv?style=for-the-badge)
 ![](https://img.shields.io/npm/v/aes-encryption-with-iv?style=for-the-badge)
 
-Thanks to this package, you can perform AES encryption type with simpler and different security algorithms. It is not dependent on any 3rd party library. It runs functions from the crypto library of Node JS. AES encryption has an important place today. It is a type of encryption that I use especially in data transfers with its strong algorithm. How can I make transactions more difficult with this encryption type? You can use the library that I have mentioned and designed as a hobby with the following document.
+Thanks to this package, you can perform AES encryption type with simpler and different security algorithms. It is not dependent on any 3rd party library. It runs functions from the crypto library of Node JS. AES encryption has an important place today. It is a type of encryption that I use especially in data transfers with its strong algorithm. This is how you can make transactions, you can use the library that I have mentioned and designed as a hobby with the following document.
 
 # Install
 
