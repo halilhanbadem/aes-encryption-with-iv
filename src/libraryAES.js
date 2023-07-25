@@ -169,7 +169,7 @@ class libraryAES {
                     }
 
 
-                    DifferenceAlgoOutput = localConfig.output === "base64" ? Buffer.from(DifferenceAlgoOutput, 'hex')
+                    DifferenceAlgoOutput = localConfig.output === "base64" ? Buffer.from(DifferenceAlgoOutput, 'utf8')
                         .toString('base64') : DifferenceAlgoOutput;
 
                     resolve(DifferenceAlgoOutput);
@@ -192,7 +192,7 @@ class libraryAES {
         return new Promise(function (resolve, reject) {
             try {
                 data = localConfig.output === "base64" ? Buffer.from(data, 'base64')
-                    .toString('hex') : data;
+                    .toString('utf8') : data;
                 const onlyData = data.substring(16, data.length - 16);
                 const ivKey = data.substring(0, 16) + data.substring(data.length - 16, data.length);
                 const decipher = createDecipheriv(localConfig.type, key, Buffer.from(ivKey, 'hex'));
